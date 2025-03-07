@@ -17,6 +17,7 @@ This is a simple auction system where users can:
 7- The project is built with:
 
 Backend: Express.js with MongoDB
+
 Frontend: EJS and plain JavaScript
 
 For more detailes about what else is used you can check the package.json  dependencies. 
@@ -27,13 +28,16 @@ You need to have MongoDB setup in your computer since the system uses database f
 
 Clone the repository :
 git clone https://github.com/EFEOZTRK/REST.git
-,
+
+
 Change directory to REST folder : 
 cd REST
-,
+
+
 Fill in the .env file with your mongoDB connection string 
 and fill the Stripe Publishable/Secret Keys with yours.(You need to open a Stripe account if you dont have already).
-,
+
+
 After these steps You can finally enter the webpage. To do this while inside the REST directory enter this on your command line:
 
 nodemon express
