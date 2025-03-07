@@ -3,11 +3,17 @@ AUCTION SYSTEM PROJECT
 This is a simple auction system where users can:
 
 1- Register and log in.
+
 2- Manage their user profiles (update or delete their accounts).
+
 3- Bid on auction items.
+
 4- Add, edit, and delete auction items.
+
 5- Simulate item purchases using Stripe.
+
 6- Download a text file containing the auction item description.
+
 7- The project is built with:
 
 Backend: Express.js with MongoDB
