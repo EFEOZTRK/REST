@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="items.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add items for bidding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Liter&family=Oxanium:wght@200..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+        background-color: #1e1d1d;
+      }
+      h4 {
+        padding: 15px;
+        font-size: 22px;
+        letter-spacing: 0.5px;
+        color: #ccc;
+      }
+      a {
+        padding: 15px;
+        text-decoration: none;
+      }
+      form {
+        padding: 15px;
+      }
+      label {
+        color: #ccc;
+      }
+      input {
+        width: 50%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        background-color: #ccc;
+      }
+      .number-input {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      button {
+        width: 8%;
+        padding: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>Edit Item</h4>
+    <hr />
+    <form action="/home/edit-form" method="post">
+      <label>Item Name :</label> <br />
+      <input type="text" name="itemName" required value="<%= name %>" />
+      <br />
+      <label>Items Description :</label> <br />
+      <input
+        type="text"
+        name="itemDescription"
+        required
+        value="<%= description %>"
+      />
+      <input
+        type="text"
+        name="unchangedDescription"
+        style="display: none"
+        value="<%= description %>"
+      />
+      <br />
+      <label>Price to start bidding from :</label> <br />
+      <input
+        class="number-input"
+        type="number"
+        name="itemPrice"
+        required
+        value="<%= price %>"
+      />
+      <br />
+      <button type="submit">Edit item</button>
+      <a style="color: red" href="/home">Cancel and return Home</a>
+    </form>
+  </body>
+</html>

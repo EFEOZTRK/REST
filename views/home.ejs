@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Liter&family=Oxanium:wght@200..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <div class="website-container">
+      <header class="header">
+        <div class="website-text">Bidding Website</div>
+        <div class="user-profile">
+          <i class="fa-regular fa-user fa-xl" style="color: #000000"></i
+          ><a href="/home/profile"
+            ><% if (username) { %> <%= username %> <% } %></a
+          >
+          /
+          <form action="/logout" method="post">
+            <button style="color: red" class="logout-btn">Log out</button>
+          </form>
+        </div>
+      </header>
+      <div class="main">
+        <div class="main-header">
+          <div class="item-text">Items:</div>
+          <a href="/home/additems">Add items</a>
+        </div>
+      </div>
+      <div class="item-container">
+        <div class="item">
+          <img src="/img/placeholder.png" alt="img" />
+          <div class="item-description">Old Vase</div>
+          <div class="item-description">A vase from the year 1734</div>
+          <div class="item-prices">
+            <div class="current-bid">
+              <div class="current-price">Current Bid $ :</div>
+              <input
+                type="number"
+                name="number"
+                id="number"
+                placeholder="$"
+                value="20"
+              />
+            </div>
+            <button class="bid-button" id="bid-button">Bid</button>
+            <button class="edit-button" id="edit-button">Edit</button>
+            <div class="error-bidding-msg"></div>
+          </div>
+        </div>
+        <% if (items.length > 0) { %> <% for( let i = 0; i < items.length; i++ )
+        { %>
+        <div class="item">
+          <img src="/img/placeholder.png" alt="img" />
+          <div class="item-description"><%= items[i].itemName %></div>
+          <div class="item-description"><%= items[i].itemDescription %></div>
+          <div class="item-prices">
+            <div class="current-bid">
+              <div class="current-price">Current Bid $ :</div>
+              <input
+                type="number"
+                name="number"
+                id="number"
+                placeholder="$"
+                value="<%= items[i].itemPrice %>"
+              />
+            </div>
+            <form
+              id="bid-form"
+              class="bid-form"
+              action="/home/bid"
+              method="post"
+            >
+              <input
+                type="text"
+                value=""
+                style="display: none"
+                name="itemPrice"
+                id="hiddenInput"
+              />
+              <input
+                type="text"
+                name="itemDescription"
+                style="display: none"
+                value="<%= items[i].itemDescription %>"
+              />
+              <button type="submit" class="bid-button" id="bid-button-js">
+                Bid
+              </button>
+            </form>
+            <div class="buttons-edit-delete">
+              <form action="/home/edit" method="post">
+                <input
+                  type="text"
+                  name="itemDescription"
+                  style="display: none"
+                  value="<%= items[i].itemDescription %>"
+                />
+                <button class="edit-button" id="edit-button">Edit</button>
+              </form>
+              <form action="/home/delete" method="post">
+                <input
+                  style="display: none"
+                  type="text"
+                  name="itemDescription"
+                  value="<%= items[i].itemDescription %>"
+                />
+                <button type="submit" class="delete-button" id="delete-button">
+                  Delete
+                </button>
+              </form>
+              <form
+                style="cursor: pointer"
+                action="/home/download"
+                method="post"
+                id="pointer"
+              >
+                <input
+                  type="text"
+                  name="itemName"
+                  value="<%= items[i].itemName %>"
+                  style="display: none"
+                />
+                <button
+                  id="download"
+                  style="border: none"
+                  type="submit"
+                  style="padding: 5px"
+                >
+                  <i class="fa-solid fa-download" style="color: #ffffff"></i>
+                </button>
+              </form>
+              <form action="/home/buy" method="post">
+                <input
+                  type="text"
+                  name="itemName"
+                  value="<%= items[i].itemName %>"
+                  style="display: none"
+                />
+                <input
+                  style="display: none"
+                  name="itemPrice"
+                  value="<%= items[i].itemPrice %>"
+                />
+                <button id="buy" style="border: none" type="submit">
+                  <i
+                    class="fa-solid fa-cart-shopping fa-lg"
+                    style="color: #ffffff"
+                  ></i>
+                </button>
+              </form>
+            </div>
+            <div class="error-bidding-msg"></div>
+          </div>
+        </div>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script
+  src="https://kit.fontawesome.com/a3d028a738.js"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  document.querySelectorAll(".bid-form").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const itemPriceInput = form.querySelector('input[name="itemPrice"]');
+      const visibleInputField = form
+        .closest(".item-prices")
+        .querySelector('input[type="number"]');
+
+      itemPriceInput.value = visibleInputField.value;
+
+      form.submit();
+    });
+  });
+</script>

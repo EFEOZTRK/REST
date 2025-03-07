@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/profile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Liter&family=Oxanium:wght@200..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+        
+        
+          form {
+            padding: 15px;
+          }
+          label {
+            color: #170808;
+            margin-right: 10px;
+          }
+          input {
+            width: 50%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            background-color: #ccc;
+          }
+          
+          button {
+            width: fit-content;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            margin-top: 10px;
+          }
+    </style>
+  </head>
+  <body>
+    <div class="website-container">
+      <header class="header">
+        <div class="website-text">Bidding Website</div>
+        <div class="user-profile">
+            <a href="/home">
+            <i class="fa-solid fa-rotate-left fa-xl"></i>
+            </a>
+          <form action="/logout" method="post">
+            <button style="color: red" class="logout-btn">Log out</button>
+          </form>
+        </div>
+      </header>
+      <div class="main">
+        <div class="main-header">
+          <div class="item-text">Profile Information :</div>
+        </div>
+        <div class="user-information-form">
+            <form id="profile-form" action="/home/profile" method="post">
+                <label>Username : </label>
+                <input id="username" type="text" readonly name="username" required value="<%= username ? username : ""  %>"> <br>
+                <input id="oldUsername" type="text" style="display: none;" name="oldUsername" value="">
+
+                <label>Password : </label>
+                <input id="password" type="password" name="password" placeholder="If dont want to change leave empty"> <br>
+                <label>Email:</label>
+
+                <input id="email" type="email" name="email" required value="<%= email ? email : ""  %>" > <br>
+                <input id="oldEmail" type="text" style="display: none;" name="oldEmail" value="">
+                <label>Address :</label>
+
+                <input id="address" type="text" name="adress" required value="<%= address ? address : ""  %>" > <br>
+                <input id="oldAddress" type="text" style="display: none;" name="oldAddress" value="">
+                <label>Name :</label>
+
+                <input id="name" type="text" name="name" required value="<%= name ? name : ""  %>"> <br>
+                <input id="oldName" type="text" style="display: none;" name="oldName" value="">
+                <label>Surname :</label>
+
+                <input id="surname" type="text" name="surname" required value="<%= surname ? surname : ""  %>"> <br>
+                <input id="oldSurname" type="text" style="display: none;" name="oldSurname" value="">
+                <button type=submit>Confirm Changes</button>
+                
+            </form>
+            <form id="delete-user-form" action="/home/delete-user" method="post">
+              <button style="background-color: red;" type="submit">Delete User</button>
+              <input id="username" type="text" style="display: none;" name="username"  value="<%= username ? username : ""  %>">
+            </form>
+        </div>
+      </div>
+  </body>
+</html>
+
+<script
+  src="https://kit.fontawesome.com/a3d028a738.js"
+  crossorigin="anonymous"
+  ></script>
+
+
+
+  
+  
+
+
